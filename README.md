@@ -22,3 +22,8 @@ docker container ls
 docker exec -ti rhys sh
 nodetool status
 ```
+
+# TODO
+
+* Add volume to persist data
+# Add tests for container ports

@@ -10,10 +10,24 @@ This Docker Image runs Cassandra in CentOS 8 and exposes the following ports...
 
 
 ```bash
-docker build .
 docker build -t cassandra .
-docker run -tid --rm -p 9042:9042 -p 9160:9160 -p 7199:7199 --name rhys  cassandra
+docker volume create cass
+docker run -tid --mount source=cass,target=/var/lib/cassandra --rm -p 9042:9042 -p 9160:9160 -p 7199:7199 --name rhys  cassandra
 docker container ls
+```
+
+# Verify ports are open on host
+
+* MacOS
+
+```bash
+netstat -anp tcp | grep LISTEN
+```
+
+* Linux
+
+```bash
+netstat -tulpn | grep LISTEN
 ```
 
 # Access the running container and check Cassandra
